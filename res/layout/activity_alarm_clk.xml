@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Gray"
+    android:gravity="fill_horizontal"
+    android:orientation="vertical" >
+
+	<TextView android:id="@+id/textView2" android:layout_width="match_parent"
+		android:layout_height="wrap_content" android:text="@string/textview2"
+		android:textColor="@color/FontColor" />
+
+	<LinearLayout android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<AnalogClock android:id="@+id/analogClock1"
+			android:layout_width="90dp" android:layout_height="127dp" />
+
+		<TimePicker
+		    android:id="@+id/timePicker1"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:background="@color/Gray" />
+
+	</LinearLayout>
+
+	<LinearLayout android:layout_width="match_parent"
+		android:layout_height="wrap_content" android:orientation="vertical">
+
+		<Button android:id="@+id/button1" android:layout_width="fill_parent"
+			android:layout_height="70dp" android:onClick="SetAlarm" android:text="@string/button1" />
+	</LinearLayout>
+
+
+	<LinearLayout android:layout_width="match_parent"
+		android:layout_height="0dp" android:layout_weight="0"
+		android:orientation="vertical">
+
+		<TextView android:id="@+id/textView1" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:text="@string/textview1" />
+
+	</LinearLayout>
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical" >
+
+		<Button
+		    android:id="@+id/button3"
+		    android:layout_width="fill_parent"
+		    android:layout_height="0dp"
+		    android:layout_weight="0.23"
+		    android:onClick="SnoozeAlarm"
+		    android:text="@string/button3" />
+
+		<Button
+		    android:id="@+id/button2"
+		    android:layout_width="fill_parent"
+		    android:layout_height="68dp"
+		    android:layout_weight="0.03"
+		    android:onClick="CancelAlarm"
+		    android:text="@string/button2" />
+
+	</LinearLayout>
+
+</LinearLayout>
