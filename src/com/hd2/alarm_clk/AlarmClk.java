@@ -110,13 +110,13 @@ public class AlarmClk extends Activity {
 	            				 * Workaround would be to add a new reboot_reason
 	            				 * in arch\arm\mach-msm\pm.c. Something like this maybe:
 	            			     * ###############################################################
-	            			     * # if (!strncmp(cmd, "alarm-", 6)) {                           #
-	            				 * # 	unsigned code = simple_strtoul(cmd + 6, 0, 16) & 0xfff; #
+	            			     * # if (!strncmp(cmd, "S", 1)) {                           	 #
+	            				 * # unsigned code = simple_strtoul(cmd + 1, 0, 16) & 0x00ffffff;#
 	            				 * #	restart_reason = 0x6f656000 | code;                      #
 	            				 * # }                                                           #
 	            				 * ###############################################################
 	            				 * and then calling here: 
-	            				 * pm.reboot("alarm-" + MinutesToSuspend);
+	            				 * pm.reboot("S" + MinutesToSuspend);
 	            			     */
 	            				pm.reboot("oem-" + MinutesToSuspend);
 	            				finish();
