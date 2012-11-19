@@ -40,8 +40,12 @@ public class AlarmClk extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);        
         setContentView(R.layout.activity_alarm_clk);
-        tp = (TimePicker)this.findViewById(R.id.timePicker1);
+        Time now = new Time();
+    	now.setToNow();
+    	tp = (TimePicker)this.findViewById(R.id.timePicker1);
         tp.setIs24HourView(true);
+        tp.setCurrentHour(Integer.valueOf(now.hour));
+        tp.setCurrentMinute(Integer.valueOf(now.minute));
         pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
     }
     
@@ -70,9 +74,9 @@ public class AlarmClk extends Activity {
     		if (mintosusp < 0) {
 			   	mintosusp = mintosusp + 1440;//zzz
     		}    
-    		if (mintosusp > 255) {
-    			makeToast("Alarm time for more than 255 min from now\n is not supported.");
-    		} else {
+//    		if (mintosusp > 255) {
+//    			makeToast("Alarm time for more than 255 min from now\n is not supported.");
+//    		} else {
 	    		// cLK will use the MinutesToSuspend to suspend device for that time
 	        	final int MinutesToSuspend = mintosusp;
 	    		
@@ -80,6 +84,8 @@ public class AlarmClk extends Activity {
 	    		SharedPreferences mAlarmPreferences = getSharedPreferences("AlarmPreferences", 0);
 	    		SharedPreferences.Editor mAlarmEditor = mAlarmPreferences.edit();
 	        	mAlarmEditor.putBoolean("alarm_on_boot", true);
+	        	mAlarmEditor.putInt("alarm_time_h", alarm_time_h);
+	        	mAlarmEditor.putInt("alarm_time_m", alarm_time_m);
 	        	mAlarmEditor.commit();
 	            
 	    		// Inform user for the time the device will suspend till it reboots and sounds the alarm
@@ -107,6 +113,9 @@ public class AlarmClk extends Activity {
 	            				 * 
 	            				 * Problem is that we can't detect correctly the MinutesToSuspend
 	            				 * if it is larger that 255 min.
+	            				 */
+	            				//pm.reboot("oem-" + MinutesToSuspend);
+	            				/*
 	            				 * Workaround would be to add a new reboot_reason
 	            				 * in arch\arm\mach-msm\pm.c. Something like this maybe:
 	            			     * ###############################################################
@@ -118,14 +127,14 @@ public class AlarmClk extends Activity {
 	            				 * and then calling here: 
 	            				 * pm.reboot("S" + MinutesToSuspend);
 	            			     */
-	            				pm.reboot("oem-" + MinutesToSuspend);
+	            				pm.reboot("S" + MinutesToSuspend);
 	            				finish();
 	                        } 
 	                    }); 
 	                } 
 	            }, 3000);
 	    		
-    		}
+//    		}
     	}
     	
     }

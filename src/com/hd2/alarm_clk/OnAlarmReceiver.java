@@ -65,6 +65,8 @@ public class OnAlarmReceiver extends Activity {
         	SharedPreferences mAlarmPreferences = getSharedPreferences("AlarmPreferences", 0);
         	SharedPreferences.Editor mAlarmEditor = mAlarmPreferences.edit();
         	mAlarmEditor.putBoolean("alarm_on_boot", false);
+        	mAlarmEditor.putInt("alarm_time_h", 0);
+        	mAlarmEditor.putInt("alarm_time_m", 0);
         	mAlarmEditor.commit();
         	
             finish();
@@ -99,7 +101,9 @@ public class OnAlarmReceiver extends Activity {
 		   	SharedPreferences mAlarmPreferences = getSharedPreferences("AlarmPreferences", 0);
 		   	SharedPreferences.Editor mAlarmEditor = mAlarmPreferences.edit();
 	    	mAlarmEditor.putBoolean("alarm_on_boot", true);
-	    	mAlarmEditor.commit();
+	    	mAlarmEditor.putInt("alarm_time_h", time_h);
+        	mAlarmEditor.putInt("alarm_time_m", (time_m+10));
+        	mAlarmEditor.commit();
 	        
 	    	// Set Alarm
 		   	Intent intent = new Intent(this, OnAlarmReceiver.class);
