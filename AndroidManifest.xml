@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.hd2.alarm_clk"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="3"
+    android:versionName="3.0" >
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="15" />
+        android:targetSdkVersion="17" />
     
 	<uses-permission
 	    android:name="android.permission.REBOOT" />
@@ -19,7 +19,8 @@
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:allowBackup="false" >
         <activity
             android:name=".AlarmClk"
             android:label="@string/title_activity_alarm_clk" >
@@ -29,10 +30,10 @@
             </intent-filter>
         </activity>
         <activity
-    		android:name=".OnAlarmReceiver" >
+    		android:name=".OnAlarmReceiver" 
+    		android:label="@string/title_activity_alarm_clk">
     		<intent-filter>
         		<action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
     		</intent-filter>
 		</activity>
 		<receiver
